@@ -16,7 +16,7 @@ The frontend is built with **Angular**, and the backend is built with **Django**
 ## Team Members
 - Karakat
 - Aruzhan
-- 
+- Arailym
 
 ## Project Structure
 - `frontend/` — Angular frontend
