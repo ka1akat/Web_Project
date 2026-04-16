@@ -1,0 +1,36 @@
+<div class="budget-page">
+  <div class="budget-header">
+    <h1>Budget</h1>
+    <a routerLink="/dashboard" class="back-link">← Back to Dashboard</a>
+  </div>
+
+  <div class="budget-form">
+    <input
+      type="number"
+      [(ngModel)]="amount"
+      placeholder="Limit amount"
+    />
+
+    <input
+      type="month"
+      [(ngModel)]="month"
+    />
+
+    <button (click)="saveBudget()">Save Budget</button>
+  </div>
+
+  <div class="budget-list">
+    @if (budgets.length === 0) {
+      <p>No budgets yet</p>
+    } @else {
+      @for (budget of budgets; track budget.id) {
+        <div class="budget-item">
+          <div>
+            <strong>{{ budget.month }}</strong> — {{ budget.amount }}
+          </div>
+          <button (click)="deleteBudget(budget.id)">Delete</button>
+        </div>
+      }
+    }
+  </div>
+</div>

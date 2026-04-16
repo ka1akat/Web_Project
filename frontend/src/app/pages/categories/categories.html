@@ -1,0 +1,23 @@
+<h1>Categories</h1>
+
+<a routerLink="/dashboard">← Back to Dashboard</a>
+
+<div>
+  <input
+    type="text"
+    [(ngModel)]="categoryName"
+    placeholder="Enter category name"
+  />
+  <button (click)="addCategory()">Add Category</button>
+</div>
+
+<ul *ngIf="categories.length > 0; else emptyBlock">
+  <li *ngFor="let category of categories">
+    <span>{{ category.name }}</span>
+    <button (click)="deleteCategory(category.id)">Delete</button>
+  </li>
+</ul>
+
+<ng-template #emptyBlock>
+  <p>No categories yet</p>
+</ng-template>

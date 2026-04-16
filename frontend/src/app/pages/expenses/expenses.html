@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="header">
+    <h1>Expenses</h1>
+    <button (click)="goBack()">← Back to Dashboard</button>
+  </div>
+
+  <!-- Форма добавления -->
+  <div class="form-section">
+    <input [(ngModel)]="title" placeholder="Title" />
+    <input [(ngModel)]="amount" type="number" placeholder="Amount" />
+    <input [(ngModel)]="date" type="date" />
+
+    <select [(ngModel)]="categoryId">
+      <option [ngValue]="null" disabled>Select category</option>
+      <option *ngFor="let cat of categories" [ngValue]="cat.id">
+        {{ cat.name }}
+      </option>
+    </select>
+
+    <textarea [(ngModel)]="note" placeholder="Note"></textarea>
+    <button (click)="addExpense()">Add Expense</button>
+  </div>
+
+  <!-- Список расходов -->
+  <div class="list-section">
+    <div *ngIf="expenses.length === 0">Нет расходов</div>
+
+    <div class="expense-item" *ngFor="let expense of expenses">
+      <div class="expense-info">
+        <strong>{{ expense.title }}</strong>
+        <span>{{ expense.amount }} ₸</span>
+        <span>{{ expense.date }}</span>
+        <span>{{ getCategoryName(expense.categoryId) }}</span>
+        <p *ngIf="expense.note">{{ expense.note }}</p>
+      </div>
+      <button (click)="deleteExpense(expense.id)">Удалить</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+.budget-page {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.budget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.back-link {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+
+.budget-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.budget-form input,
+.budget-form button {
+  padding: 16px;
+  font-size: 16px;
+  border: 1px solid #999;
+  border-radius: 6px;
+}
+
+.budget-form button {
+  cursor: pointer;
+}
+
+.budget-list {
+  margin-top: 20px;
+}
+
+.budget-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.budget-item button {
+  padding: 8px 14px;
+  border: 1px solid #999;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+}

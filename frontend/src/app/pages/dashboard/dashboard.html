@@ -1,0 +1,37 @@
+<div class="dashboard-container">
+  <div class="top-bar">
+    <h2>Dashboard</h2>
+    <button (click)="logout()">Logout</button>
+  </div>
+
+  <p class="welcome">Welcome, {{ username }} </p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Total Spent</h3>
+      <p>{{ totalSpent }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Expenses Count</h3>
+      <p>{{ expensesCount }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Warning</h3>
+      <p>{{ warningMessage }}</p>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <a routerLink="/categories">Categories</a>
+    <a routerLink="/expenses">Expenses</a>
+    <a routerLink="/budget">Budget</a>
+  </div>
+
+  <!-- Диаграмма -->
+  <div class="chart-section">
+    <h3>Расходы по категориям</h3>
+    <canvas #categoryChart></canvas>
+  </div>
+</div>
