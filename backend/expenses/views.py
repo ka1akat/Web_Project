@@ -9,6 +9,10 @@ from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
+from rest_framework.views import APIView
+from .serializers import UserSerializer
+
+
 from rest_framework.decorators import permission_classes
 
 class CategoryListCreateView(ListCreateAPIView):
@@ -127,3 +131,38 @@ def warnings(request):
         return Response({'warning': 'You used 80% of your budget'})
     else:
         return Response({'message': 'All good'})
+    
+class UserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+
+    def put(self, request):
+        user = request.user
+        serializer = UserSerializer(user, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors)
+    
+
+class ChangePasswordView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+
+        current_password = request.data.get('current_password')
+        new_password = request.data.get('password')
+
+        if not user.check_password(current_password):
+            return Response({'error': 'Wrong password'}, status=400)
+
+        user.set_password(new_password)
+        user.save()
+
+        return Response({'message': 'Password updated'})

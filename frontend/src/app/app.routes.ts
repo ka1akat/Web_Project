@@ -5,6 +5,7 @@ import { CategoriesComponent } from './pages/categories/categories';
 import { DashboardComponent } from './pages/dashboard/dashboard';
 import { ExpensesComponent } from './pages/expenses/expenses';
 import { BudgetComponent } from './pages/budget/budget';
+import { Profile } from './pages/profile/profile';
 
 export const routes: Routes = [
   {
@@ -35,5 +36,9 @@ export const routes: Routes = [
   {
     path: 'budget',
     component: BudgetComponent
+  },
+  {
+    path: 'profile',
+    component: Profile
   }
 ];

@@ -18,4 +18,7 @@ urlpatterns = [
     path('expenses/', ExpenseListCreateView.as_view()),
     path('expenses/<int:pk>/', ExpenseDetailView.as_view()),
     path('budget/', BudgetListCreateView.as_view()),
+
+    path('user/', UserView.as_view()),
+path('change-password/', ChangePasswordView.as_view()),
 ]

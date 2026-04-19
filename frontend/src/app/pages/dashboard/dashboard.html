@@ -1,8 +1,12 @@
 <div class="dashboard-container">
   <div class="top-bar">
-    <h2>Dashboard</h2>
+  <h2>Dashboard</h2>
+
+  <div class="actions">
+    <button routerLink="/profile">Profile</button>
     <button (click)="logout()">Logout</button>
   </div>
+</div>
 
   <p class="welcome">Welcome, {{ username }} </p>
 
