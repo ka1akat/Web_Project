@@ -1,0 +1,46 @@
+<div class="page categories-page">
+  <div class="container">
+    <div class="top">
+      <div class="title">
+        <h1>Categories</h1>
+        <a class="back btn" routerLink="/dashboard">← Back to Dashboard</a>
+      </div>
+    </div>
+
+    <div class="card add-card">
+      <div class="card-inner">
+        <div class="add-row">
+          <input
+            class="field"
+            type="text"
+            [(ngModel)]="categoryName"
+            placeholder="Enter category name"
+          />
+          <button class="btn btn-primary" (click)="addCategory()">Add Category</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card list-card">
+      <div class="card-inner">
+        <div class="list-header">
+          <h3>All Categories</h3>
+          <span class="muted-2">{{ categories.length }} total</span>
+        </div>
+
+        <ul class="list" *ngIf="categories.length > 0; else emptyBlock">
+          <li class="item" *ngFor="let category of categories">
+            <span class="name">{{ category.name }}</span>
+            <button class="btn btn-danger" (click)="deleteCategory(category.id)">Delete</button>
+          </li>
+        </ul>
+
+        <ng-template #emptyBlock>
+          <div class="empty">
+            <p class="muted">No categories yet</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

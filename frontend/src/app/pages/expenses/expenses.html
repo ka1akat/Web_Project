@@ -1,0 +1,86 @@
+<div class="page expenses-page">
+  <div class="container">
+    <div class="header">
+      <div class="title">
+        <h1>Expenses</h1>
+        <p class="muted">Add and track your spending</p>
+      </div>
+      <button class="btn" (click)="goBack()">← Back to Dashboard</button>
+    </div>
+
+    <div class="grid">
+      <!-- Форма добавления -->
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-head">
+            <h3>Add Expense</h3>
+            <span class="muted-2">Quick entry</span>
+          </div>
+
+          <div class="form-section">
+            <div class="field-row">
+              <label class="lbl muted-2">Amount</label>
+              <input class="field" [(ngModel)]="amount" type="number" placeholder="0.00" />
+            </div>
+
+            <div class="field-row">
+              <label class="lbl muted-2">Category</label>
+              <select class="field" [(ngModel)]="categoryId">
+                <option [ngValue]="null" disabled>Select category</option>
+                <option *ngFor="let cat of categories" [ngValue]="cat.id">
+                  {{ cat.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="field-row">
+              <label class="lbl muted-2">Date</label>
+              <input class="field" [(ngModel)]="date" type="date" />
+            </div>
+
+            <div class="field-row">
+              <label class="lbl muted-2">Description</label>
+              <input class="field" [(ngModel)]="title" placeholder="Title" />
+            </div>
+
+            <div class="field-row">
+              <label class="lbl muted-2">Note</label>
+              <textarea class="field note" [(ngModel)]="note" placeholder="Add a note..."></textarea>
+            </div>
+
+            <button class="btn btn-primary" (click)="addExpense()">Add Expense</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Список расходов -->
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-head">
+            <h3>Recent Expenses</h3>
+            <span class="muted-2">{{ expenses.length }} items</span>
+          </div>
+
+          <div class="list-section">
+            <div class="empty muted" *ngIf="expenses.length === 0">Нет расходов</div>
+
+            <div class="expense-item" *ngFor="let expense of expenses">
+              <div class="expense-info">
+                <div class="row">
+                  <strong class="name">{{ expense.title }}</strong>
+                  <span class="amt">{{ expense.amount }} ₸</span>
+                </div>
+                <div class="meta">
+                  <span class="pill">{{ expense.date }}</span>
+                  <span class="pill">{{ getCategoryName(expense.categoryId) }}</span>
+                </div>
+                <p class="note-text muted" *ngIf="expense.note">{{ expense.note }}</p>
+              </div>
+              <button class="btn btn-danger" (click)="deleteExpense(expense.id)">Удалить</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

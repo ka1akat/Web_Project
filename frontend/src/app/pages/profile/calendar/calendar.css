@@ -1,0 +1,73 @@
+.controls{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.controls button{
+  padding: 10px 12px;
+  border-radius: 14px;
+}
+
+.controls span{
+  font-weight: 900;
+  letter-spacing: .2px;
+  color: rgba(234,240,255,.9);
+}
+
+.weekdays{
+  display:grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  text-align:center;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .2px;
+  color: rgba(234,240,255,.58);
+  margin-bottom: 10px;
+}
+
+.calendar{
+  display:grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.day{
+  height: 74px;
+  border-radius: 18px;
+  border: 1px solid var(--stroke);
+  background: rgba(10,18,32,.32);
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  position: relative;
+  overflow: hidden;
+}
+
+.day span{
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+
+.amount{
+  font-size: 11px;
+  margin-top: 6px;
+  font-weight: 800;
+  color: rgba(234,240,255,.82);
+}
+
+.good{
+  border-color: rgba(132,204,22,.28);
+  background: rgba(132,204,22,.12);
+}
+.warning{
+  border-color: rgba(251,191,36,.30);
+  background: rgba(251,191,36,.12);
+}
+.exceeded{
+  border-color: rgba(239,68,68,.30);
+  background: rgba(239,68,68,.10);
+}

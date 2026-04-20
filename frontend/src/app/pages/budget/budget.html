@@ -1,0 +1,70 @@
+<div class="page budget-page">
+  <div class="container">
+    <div class="budget-header">
+      <div class="title">
+        <h1>Budget Settings</h1>
+        <p class="muted">Set monthly limits to stay on track</p>
+      </div>
+      <a routerLink="/dashboard" class="btn back-link">← Back to Dashboard</a>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-head">
+            <h3>Create Budget</h3>
+            <span class="muted-2">Monthly</span>
+          </div>
+
+          <div class="budget-form">
+            <div class="field-row">
+              <label class="lbl muted-2">Limit amount</label>
+              <input
+                class="field"
+                type="number"
+                [(ngModel)]="amount"
+                placeholder="Limit amount"
+              />
+            </div>
+
+            <div class="field-row">
+              <label class="lbl muted-2">Month</label>
+              <input
+                class="field"
+                type="month"
+                [(ngModel)]="month"
+              />
+            </div>
+
+            <button class="btn btn-primary" (click)="saveBudget()">Save Budget</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-head">
+            <h3>Budgets</h3>
+            <span class="muted-2">{{ budgets.length }} saved</span>
+          </div>
+
+          <div class="budget-list">
+            @if (budgets.length === 0) {
+              <div class="empty muted">No budgets yet</div>
+            } @else {
+              @for (budget of budgets; track budget.id) {
+                <div class="budget-item">
+                  <div class="budget-info">
+                    <strong class="month">{{ budget.month }}</strong>
+                    <span class="amount">{{ budget.amount }}</span>
+                  </div>
+                  <button class="btn btn-danger" (click)="deleteBudget(budget.id)">Delete</button>
+                </div>
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

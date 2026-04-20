@@ -1,0 +1,83 @@
+<div class="dashboard-container page">
+  <div class="container">
+    <div class="top-bar">
+      <div class="title">
+        <h2>Dashboard</h2>
+        <p class="welcome muted">Welcome, {{ username }}</p>
+      </div>
+
+      <div class="actions">
+        <button class="btn" routerLink="/profile">Profile</button>
+        <button class="btn" (click)="logout()">Logout</button>
+      </div>
+    </div>
+
+    <div class="visa-wrap">
+      <app-visa-card></app-visa-card>
+    </div>
+
+    <div class="cards">
+      <div class="stat card">
+        <div class="stat-inner">
+          <div class="stat-top">
+            <span class="stat-icon stat-icon-lime">$</span>
+            <span class="stat-label muted-2">Total Spent</span>
+          </div>
+          <p class="stat-value">{{ totalSpent }}</p>
+        </div>
+      </div>
+
+      <div class="stat card">
+        <div class="stat-inner">
+          <div class="stat-top">
+            <span class="stat-icon stat-icon-lime">▦</span>
+            <span class="stat-label muted-2">Expenses Count</span>
+          </div>
+          <p class="stat-value">{{ expensesCount }}</p>
+        </div>
+      </div>
+
+      <div class="stat card">
+        <div class="stat-inner">
+          <div class="stat-top">
+            <span class="stat-icon stat-icon-warn">!</span>
+            <span class="stat-label muted-2">Warning</span>
+          </div>
+          <p class="stat-value stat-value-warn">{{ warningMessage }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <a class="btn" routerLink="/categories">Categories</a>
+      <a class="btn" routerLink="/expenses">Expenses</a>
+      <a class="btn" routerLink="/budget">Budget</a>
+    </div>
+
+    <div class="panels">
+      <div class="panel card">
+        <div class="card-inner">
+          <div class="panel-title">
+            <h3>Category Breakdown</h3>
+            <span class="muted-2">This month</span>
+          </div>
+          <div class="chart-wrap">
+            <canvas #categoryChart></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel card">
+        <div class="card-inner">
+          <div class="panel-title">
+            <h3>Daily Expenses</h3>
+            <span class="muted-2">Last 7 days</span>
+          </div>
+          <div class="chart-wrap chart-wrap-wide">
+            <canvas #dailyExpenseChart></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

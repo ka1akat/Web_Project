@@ -1,0 +1,97 @@
+<div class="page profile-page">
+  <div class="container">
+    <div class="profile-top">
+      <div class="title">
+        <h1>Profile</h1>
+        <p class="muted">Manage your personal info</p>
+      </div>
+      <button class="btn" routerLink="/dashboard">← Dashboard</button>
+    </div>
+
+    <div class="layout">
+      <div class="left-column">
+        <div class="card avatar-card">
+          <div class="card-inner">
+            <div class="avatar-wrapper" (click)="fileInput.click()">
+              <img *ngIf="avatarUrl" [src]="avatarUrl" class="avatar-img" />
+              <div *ngIf="!avatarUrl" class="avatar-placeholder">
+                <span>+</span>
+                <p>Add Photo</p>
+              </div>
+              <div class="avatar-overlay">Change Photo</div>
+            </div>
+            <input #fileInput type="file" accept="image/*" (change)="onAvatarChange($event)" hidden />
+            <h3 class="avatar-name">{{ user.username }}</h3>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-head">
+              <h2>My Profile</h2>
+              <span class="muted-2">Details</span>
+            </div>
+
+            <div *ngIf="!isEditing">
+              <div class="info-row">
+                <span class="label">Username</span>
+                <span class="value">{{ user.username }}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">Work</span>
+                <span class="value">{{ user.work || '—' }}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">University</span>
+                <span class="value">{{ user.university || '—' }}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">City</span>
+                <span class="value">{{ user.city || '—' }}</span>
+              </div>
+              <div class="buttons">
+                <button class="btn btn-primary" (click)="isEditing = true">Edit Profile</button>
+                <button class="btn" routerLink="/change-password">Change Password</button>
+              </div>
+            </div>
+
+            <div *ngIf="isEditing">
+              <div class="form-group">
+                <label class="lbl muted-2">Username</label>
+                <input class="field" [(ngModel)]="user.username">
+              </div>
+              <div class="form-group">
+                <label class="lbl muted-2">Work</label>
+                <input class="field" [(ngModel)]="user.work" placeholder="Place of work">
+              </div>
+              <div class="form-group">
+                <label class="lbl muted-2">University</label>
+                <input class="field" [(ngModel)]="user.university" placeholder="University">
+              </div>
+              <div class="form-group">
+                <label class="lbl muted-2">City</label>
+                <input class="field" [(ngModel)]="user.city" placeholder="City">
+              </div>
+              <div class="buttons">
+                <button class="btn btn-primary" (click)="save(); isEditing = false">Save</button>
+                <button class="btn" (click)="isEditing = false">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-head">
+              <h2>Expense Calendar</h2>
+              <span class="muted-2">Overview</span>
+            </div>
+            <app-calendar></app-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

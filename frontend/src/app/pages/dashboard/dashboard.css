@@ -1,0 +1,146 @@
+.dashboard-container{
+  display:block;
+}
+
+.top-bar{
+  display:flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.title h2{
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: .2px;
+}
+
+.welcome{
+  margin: 6px 0 0;
+  font-size: 14px;
+}
+
+.actions{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.visa-wrap{
+  margin: 18px 0 18px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 8px 0 14px;
+}
+
+.stat{
+  border-radius: var(--r-lg);
+}
+
+.stat-inner{
+  padding: 18px 18px;
+}
+
+.stat-top{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+}
+
+.stat-icon{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.stat-icon-lime{
+  background: rgba(132,204,22,.14);
+  border: 1px solid rgba(132,204,22,.28);
+  color: var(--lime-2);
+}
+
+.stat-icon-warn{
+  background: rgba(251,191,36,.14);
+  border: 1px solid rgba(251,191,36,.28);
+  color: var(--yellow);
+}
+
+.stat-label{
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.stat-value{
+  margin: 12px 0 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.stat-value-warn{
+  color: #ffd28a;
+}
+
+.nav-buttons{
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 12px 0 22px;
+}
+
+.panels{
+  display:grid;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  gap: 16px;
+  align-items:start;
+}
+
+.panel h3{
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.panel-title{
+  display:flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.chart-wrap{
+  width:100%;
+  height: 240px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.chart-wrap-wide{
+  height: 260px;
+}
+
+canvas{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@media (max-width: 980px){
+  .cards{ grid-template-columns: 1fr; }
+  .panels{ grid-template-columns: 1fr; }
+  .top-bar{ align-items: flex-start; }
+}

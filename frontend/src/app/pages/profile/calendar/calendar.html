@@ -1,0 +1,39 @@
+<h2>Calendar</h2>
+
+<div class="controls">
+  <button (click)="prevMonth()">←</button>
+
+  <span>
+    {{ viewDate | date:'MMMM yyyy' }}
+  </span>
+
+  <button (click)="nextMonth()">→</button>
+</div>
+
+<div class="weekdays">
+  <div>Mon</div>
+  <div>Tue</div>
+  <div>Wed</div>
+  <div>Thu</div>
+  <div>Fri</div>
+  <div>Sat</div>
+  <div>Sun</div>
+</div>
+
+<div class="calendar">
+  <div
+    *ngFor="let day of days"
+    class="day"
+    [ngClass]="{
+    'good':     day && dayStatus[day + ''] === 'good',
+    'warning':  day && dayStatus[day + ''] === 'warning',
+    'exceeded': day && dayStatus[day + ''] === 'exceeded'
+}"
+  >
+    <span *ngIf="day">{{ day }}</span>
+
+    <div class="amount" *ngIf="day && dayTotals[day]">
+    {{ dayTotals[day] }}₸
+    </div>
+  </div>
+</div>
