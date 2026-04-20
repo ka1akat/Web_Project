@@ -10,12 +10,15 @@ export class AuthService {
   private apiUrl = 'http://127.0.0.1:8000/api';
 
   login(username: string, password: string) {
-    return this.http.post<{ token: string }>(`${this.apiUrl}/login/`, {
+    return this.http.post(`${this.apiUrl}/login/`, {
       username,
       password
     }).pipe(
-      tap((response) => {
-        localStorage.setItem('token', response.token);
+      tap((response: any) => {
+        const token = response.token || response.key || response.auth_token;
+        console.log('FULL RESPONSE:', response);
+        console.log('TOKEN SAVED:', token);
+        localStorage.setItem('token', token);
         localStorage.setItem('username', username);
       })
     );

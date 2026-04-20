@@ -9,21 +9,24 @@ export interface Category {
   providedIn: 'root'
 })
 export class CategoryService {
-  private storageKey = 'categories';
+  private getKey(): string {
+    const username = localStorage.getItem('username') || 'guest';
+    return `categories_${username}`;
+  }
 
   getCategories(): Category[] {
-    const data = localStorage.getItem(this.storageKey);
+    const data = localStorage.getItem(this.getKey());
     return data ? JSON.parse(data) : [];
   }
 
   addCategory(category: Category): void {
     const categories = this.getCategories();
     categories.push(category);
-    localStorage.setItem(this.storageKey, JSON.stringify(categories));
+    localStorage.setItem(this.getKey(), JSON.stringify(categories));
   }
 
   deleteCategory(id: number): void {
-    const categories = this.getCategories().filter(category => category.id !== id);
-    localStorage.setItem(this.storageKey, JSON.stringify(categories));
+    const categories = this.getCategories().filter(c => c.id !== id);
+    localStorage.setItem(this.getKey(), JSON.stringify(categories));
   }
 }

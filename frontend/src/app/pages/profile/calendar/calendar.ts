@@ -73,12 +73,10 @@ export class CalendarComponent implements OnInit {
       if (budgetLimit > 0) {
         const percent = (this.dayTotals[day] / budgetLimit) * 100;
 
-        if (percent >= 100) {
-          this.dayStatus[day] = 'exceeded';
-        } else if (percent >= 80) {
-          this.dayStatus[day] = 'warning';
+        if (percent >= 50) {
+          this.dayStatus[day] = 'exceeded'; // красный
         } else {
-          this.dayStatus[day] = 'good';
+          this.dayStatus[day] = 'good'; // зелёный
         }
       }
     }

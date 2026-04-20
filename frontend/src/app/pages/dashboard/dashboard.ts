@@ -47,13 +47,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   buildChart(): void {
-    // Берём расходы и категории из localStorage
-    const expenses = JSON.parse(localStorage.getItem('expenses') || '[]');
-    const categories = JSON.parse(localStorage.getItem('categories') || '[]');
+    const username = localStorage.getItem('username') || 'guest';
+    const expenses = JSON.parse(localStorage.getItem(`expenses_${username}`) || '[]');
+    const categories = JSON.parse(localStorage.getItem(`categories_${username}`) || '[]');
 
     if (expenses.length === 0) return;
 
-    // Считаем сумму по каждой категории
+    // остальной код не меняй
     const totals: { [key: number]: number } = {};
     expenses.forEach((e: any) => {
       totals[e.categoryId] = (totals[e.categoryId] || 0) + Number(e.amount);

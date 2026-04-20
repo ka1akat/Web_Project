@@ -1,14 +1,111 @@
-.content {
+.profile-page {
+  display: flex;
+  gap: 24px;
   padding: 40px;
   background: #f5f5f5;
+  min-height: 100vh;
+  align-items: flex-start;
+}
+
+.left-column {
+  flex: 1;
+  max-width: 400px;
+}
+
+.right-column {
+  flex: 1;
 }
 
 .card {
   background: white;
   padding: 25px;
   border-radius: 12px;
-  max-width: 500px;
   margin-bottom: 20px;
+}
+
+/* Аватарка */
+.avatar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.avatar-placeholder span {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.avatar-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  font-size: 11px;
+  text-align: center;
+  padding: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 150px;  /* было 100px */
+  height: 150px;  /* было 100px */
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.avatar-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.info-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.label {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 2px;
 }
 
 .form-group {
@@ -19,16 +116,45 @@
 
 input {
   padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
 }
 
 button {
-  margin-right: 10px;
-  padding: 8px 12px;
-}
-h3 {
-  margin-bottom: 10px;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
 }
 
-input[type="password"] {
-  margin-bottom: 10px;
+.password-btn {
+  background: #f0f0f0;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  width: 100%;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.back-btn button {
+  background: none;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  color: #555;
+  padding: 0;
 }

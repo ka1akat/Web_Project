@@ -30,3 +30,12 @@ class Budget(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.month}"
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    work = models.CharField(max_length=100, blank=True)
+    university = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return self.user.username

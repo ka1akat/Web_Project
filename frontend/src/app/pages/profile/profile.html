@@ -1,59 +1,79 @@
-<div class="content">
+<div class="profile-page">
 
-  <!-- PROFILE -->
-  <div class="card">
-    <h2>My Profile</h2>
+  <div class="left-column">
 
-    <div *ngIf="user">
+    <div class="card avatar-card">
+      <div class="back-btn">
+        <button routerLink="/dashboard">← Dashboard</button>
+      </div>
+      <div class="avatar-wrapper" (click)="fileInput.click()">
+        <img *ngIf="avatarUrl" [src]="avatarUrl" class="avatar-img" />
+        <div *ngIf="!avatarUrl" class="avatar-placeholder">
+          <span>+</span>
+          <p>Add Photo</p>
+        </div>
+        <div class="avatar-overlay">Change Photo</div>
+      </div>
+      <input #fileInput type="file" accept="image/*" (change)="onAvatarChange($event)" hidden />
+      <h3 class="avatar-name">{{ user.username }}</h3>
+    </div>
+
+    <div class="card">
+      <h2>My Profile</h2>
 
       <div *ngIf="!isEditing">
-        <p><strong>Username:</strong> {{ user.username }}</p>
-        <button (click)="isEditing = true">Change</button>
+        <div class="info-row">
+          <span class="label">Username</span>
+          <span>{{ user.username }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Work</span>
+          <span>{{ user.work || '—' }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">University</span>
+          <span>{{ user.university || '—' }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">City</span>
+          <span>{{ user.city || '—' }}</span>
+        </div>
+        <div class="buttons">
+          <button (click)="isEditing = true">Edit Profile</button>
+          <button class="password-btn" routerLink="/change-password">Change Password</button>
+        </div>
       </div>
 
       <div *ngIf="isEditing">
-
         <div class="form-group">
           <label>Username</label>
           <input [(ngModel)]="user.username">
         </div>
-
+        <div class="form-group">
+          <label>Work</label>
+          <input [(ngModel)]="user.work" placeholder="Place of work">
+        </div>
+        <div class="form-group">
+          <label>University</label>
+          <input [(ngModel)]="user.university" placeholder="University">
+        </div>
+        <div class="form-group">
+          <label>City</label>
+          <input [(ngModel)]="user.city" placeholder="City">
+        </div>
         <div class="buttons">
           <button (click)="save(); isEditing = false">Save</button>
           <button (click)="isEditing = false">Cancel</button>
         </div>
-
       </div>
-
     </div>
+
   </div>
 
-  <!-- CALENDAR -->
-  <div class="card">
-    
-    <app-calendar></app-calendar>
-  </div>
-
-  <!-- PASSWORD -->
-  <div class="card">
-    <h3>Change Password</h3>
-
-    <div class="form-group">
-      <label>Current Password</label>
-      <input type="password" [(ngModel)]="currentPassword">
+  <div class="right-column">
+    <div class="card">
+      <app-calendar></app-calendar>
     </div>
-
-    <div class="form-group">
-      <label>New Password</label>
-      <input type="password" [(ngModel)]="newPassword">
-    </div>
-
-    <div class="form-group">
-      <label>Confirm New Password</label>
-      <input type="password" [(ngModel)]="confirmPassword">
-    </div>
-
-    <button (click)="changePassword()">Update Password</button>
   </div>
 
 </div>

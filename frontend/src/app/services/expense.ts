@@ -13,21 +13,24 @@ export interface Expense {
   providedIn: 'root'
 })
 export class ExpenseService {
-  private storageKey = 'expenses';
+  private getKey(): string {
+    const username = localStorage.getItem('username') || 'guest';
+    return `expenses_${username}`;
+  }
 
   getExpenses(): Expense[] {
-    const data = localStorage.getItem(this.storageKey);
+    const data = localStorage.getItem(this.getKey());
     return data ? JSON.parse(data) : [];
   }
 
   addExpense(expense: Expense): void {
     const expenses = this.getExpenses();
     expenses.push(expense);
-    localStorage.setItem(this.storageKey, JSON.stringify(expenses));
+    localStorage.setItem(this.getKey(), JSON.stringify(expenses));
   }
 
   deleteExpense(id: number): void {
     const expenses = this.getExpenses().filter(e => e.id !== id);
-    localStorage.setItem(this.storageKey, JSON.stringify(expenses));
+    localStorage.setItem(this.getKey(), JSON.stringify(expenses));
   }
 }
