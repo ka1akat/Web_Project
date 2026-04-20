@@ -30,7 +30,11 @@ export class ChangePasswordComponent {
     }
 
     const token = localStorage.getItem('token');
-    console.log('TOKEN:', token);
+    if (!token || token === 'undefined') {
+      alert('Session expired. Please log in again.');
+      this.router.navigate(['/login']);
+      return;
+    }
 
     const headers = new HttpHeaders({
       'Authorization': `Token ${token}`,
@@ -47,8 +51,14 @@ export class ChangePasswordComponent {
         this.router.navigate(['/login']);
       },
       error: (err) => {
-        console.log('ERROR:', err);
-        alert('Current password is incorrect');
+        if (err.status === 401) {
+          alert('Session expired. Please log in again.');
+          this.router.navigate(['/login']);
+          return;
+        }
+
+        const message = err?.error?.error || 'Failed to update password';
+        alert(message);
       }
     });
   }

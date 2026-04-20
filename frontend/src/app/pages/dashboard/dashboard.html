@@ -10,6 +10,10 @@
 
   <p class="welcome">Welcome, {{ username }} </p>
 
+  <div class="visa-wrap">
+    <app-visa-card></app-visa-card>
+  </div>
+
   <div class="cards">
     <div class="card">
       <h3>Total Spent</h3>
@@ -37,5 +41,10 @@
   <div class="chart-section">
     <h3>Расходы по категориям</h3>
     <canvas #categoryChart></canvas>
+  </div>
+
+  <div class="line-chart-section">
+    <h3>Расходы по дням (доп. диаграмма)</h3>
+    <canvas #dailyExpenseChart></canvas>
   </div>
 </div>

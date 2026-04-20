@@ -113,6 +113,11 @@ export class Profile implements OnInit {
     }
 
     const token = localStorage.getItem('token');
+    if (!token || token === 'undefined') {
+      alert('Session expired. Please log in again.');
+      window.location.href = '/login';
+      return;
+    }
 
     this.http.post('http://127.0.0.1:8000/api/change-password/', {
       current_password: this.currentPassword,
@@ -128,8 +133,15 @@ export class Profile implements OnInit {
         localStorage.clear();
         window.location.href = '/login';
       },
-      error: () => {
-        alert('Current password is incorrect');
+      error: (err) => {
+        if (err.status === 401) {
+          alert('Session expired. Please log in again.');
+          window.location.href = '/login';
+          return;
+        }
+
+        const message = err?.error?.error || 'Failed to update password';
+        alert(message);
       }
     });
   }

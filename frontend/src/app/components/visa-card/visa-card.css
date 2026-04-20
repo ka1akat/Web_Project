@@ -1,0 +1,104 @@
+.visa-card {
+  border-radius: 18px;
+  padding: 20px 24px;
+  color: #f4f6ff;
+  width: min(100%, 620px);
+  min-height: 200px;
+  background: linear-gradient(135deg, #1a1e46, #0f1537);
+  border: 1px solid #2f3769;
+}
+
+.card-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.dots {
+  font-size: 20px;
+  letter-spacing: 2px;
+  opacity: 0.75;
+}
+
+.amount {
+  margin: 14px 0 26px;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.card-bottom {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+}
+
+.card-digits {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #c7cee9;
+}
+
+.mastercard {
+  margin-left: auto;
+  position: relative;
+  width: 66px;
+  height: 40px;
+}
+
+.circle {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.red {
+  left: 0;
+  background: #f0445d;
+}
+
+.yellow {
+  right: 0;
+  background: #ffc642;
+  mix-blend-mode: screen;
+}
+
+@media (max-width: 768px) {
+  .visa-card {
+    min-height: 180px;
+    padding: 16px 18px;
+    border-radius: 14px;
+  }
+
+  .amount {
+    font-size: 34px;
+  }
+
+  .mastercard {
+    width: 56px;
+    height: 34px;
+  }
+
+  .circle {
+    width: 34px;
+    height: 34px;
+  }
+}
