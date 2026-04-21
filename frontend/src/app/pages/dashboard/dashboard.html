@@ -17,41 +17,38 @@
     </div>
 
     <div class="cards">
-      <div class="stat card">
-        <div class="stat-inner">
-          <div class="stat-top">
-            <span class="stat-icon stat-icon-lime">$</span>
-            <span class="stat-label muted-2">Total Spent</span>
-          </div>
-          <p class="stat-value">{{ totalSpent }}</p>
-        </div>
+      <div class="card card-1">
+        <span class="material-icons card-icon">account_balance_wallet</span>
+        <h3>Total Spent</h3>
+        <p>{{ totalSpent }}</p>
       </div>
 
-      <div class="stat card">
-        <div class="stat-inner">
-          <div class="stat-top">
-            <span class="stat-icon stat-icon-lime">▦</span>
-            <span class="stat-label muted-2">Expenses Count</span>
-          </div>
-          <p class="stat-value">{{ expensesCount }}</p>
-        </div>
+      <div class="card card-2">
+        <span class="material-icons card-icon">trending_up</span>
+        <h3>Expenses Count</h3>
+        <p>{{ expensesCount }}</p>
       </div>
 
-      <div class="stat card">
-        <div class="stat-inner">
-          <div class="stat-top">
-            <span class="stat-icon stat-icon-warn">!</span>
-            <span class="stat-label muted-2">Warning</span>
-          </div>
-          <p class="stat-value stat-value-warn">{{ warningMessage }}</p>
-        </div>
+      <div class="card card-3">
+        <span class="material-icons card-icon">warning</span>
+        <h3>Warning</h3>
+        <p>{{ warningMessage }}</p>
       </div>
     </div>
 
     <div class="nav-buttons">
-      <a class="btn" routerLink="/categories">Categories</a>
-      <a class="btn" routerLink="/expenses">Expenses</a>
-      <a class="btn" routerLink="/budget">Budget</a>
+      <a class="btn" routerLink="/categories">
+        <span class="material-icons icon">category</span>
+        Categories
+      </a>
+      <a class="btn" routerLink="/expenses">
+        <span class="material-icons icon">payments</span>
+        Expenses
+      </a>
+      <a class="btn" routerLink="/budget">
+        <span class="material-icons icon">account_balance_wallet</span>
+        Budget
+      </a>
     </div>
 
     <div class="panels">

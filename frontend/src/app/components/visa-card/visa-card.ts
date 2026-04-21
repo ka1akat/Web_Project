@@ -14,6 +14,7 @@ export class VisaCardComponent implements OnInit, DoCheck {
   private budgetService = inject(BudgetService);
   private expenseService = inject(ExpenseService);
   totalBalance = 0;
+  lastDigits = '2024';
   private lastBudgetSnapshot = '';
   private lastExpenseSnapshot = '';
 

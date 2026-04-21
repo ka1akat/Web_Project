@@ -1,3 +1,9 @@
+h2{
+  color: #274e24;
+  font-weight: 900;
+  margin: 0 0 16px 0;
+}
+
 .controls{
   display:flex;
   align-items:center;
@@ -9,12 +15,24 @@
 .controls button{
   padding: 10px 12px;
   border-radius: 14px;
+  border: 2px solid #7cb26c;
+  background: #ecf9e5;
+  color: #1f4727;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.controls button:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(40, 80, 28, 0.18);
+  background: #d8f0c9;
 }
 
 .controls span{
   font-weight: 900;
   letter-spacing: .2px;
-  color: rgba(234,240,255,.9);
+  color: #274e24;
 }
 
 .weekdays{
@@ -24,7 +42,7 @@
   font-size: 12px;
   font-weight: 900;
   letter-spacing: .2px;
-  color: rgba(234,240,255,.58);
+  color: #3f5d38;
   margin-bottom: 10px;
 }
 
@@ -37,26 +55,28 @@
 .day{
   height: 74px;
   border-radius: 18px;
-  border: 1px solid var(--stroke);
-  background: rgba(10,18,32,.32);
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
   display:flex;
   flex-direction: column;
   align-items:center;
   justify-content:center;
   position: relative;
   overflow: hidden;
+  color: #274e24;
 }
 
 .day span{
   font-weight: 900;
   letter-spacing: .2px;
+  color: #274e24;
 }
 
 .amount{
   font-size: 11px;
   margin-top: 6px;
   font-weight: 800;
-  color: rgba(234,240,255,.82);
+  color: #2f5d2c;
 }
 
 .good{

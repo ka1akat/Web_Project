@@ -1,22 +1,126 @@
-.register-container {
-  width: 320px;
-  margin: 80px auto;
-  display: flex;
+.register-page{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef7ea, #d7ecce);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.auth-wrap{
+  width: min(520px, 100%);
+  margin: 0 auto;
+  display:flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18px;
+  align-items: center;
 }
 
-input {
-  padding: 10px;
-  font-size: 16px;
+.brand{
+  text-align:center;
+  display:flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items:center;
 }
 
-button {
-  padding: 10px;
+.brand-icon{
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 900;
+  color: #1f4727;
+  background: linear-gradient(135deg, #b7fa92, #b0eb49);
+  box-shadow: 0 16px 40px rgba(43, 65, 45, 0.12);
+}
+
+.brand h2{
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: .2px;
+  color: #1f4727;
+}
+
+.brand p{
+  margin: 0;
+  font-size: 14px;
+  color: #4a5d4a;
+}
+
+.auth-card{
+  width: 100%;
+  border-radius: 20px;
+  padding: 32px;
+  background: linear-gradient(180deg, #184f1d 0%, #285c2b 100%);
+  color: #f1f5f9;
+  box-shadow: 0 8px 30px rgba(28, 63, 29, 0.24);
+}
+
+.field-row{
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.lbl{
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .25px;
+  color: #B0BEC5;
+}
+
+input{
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: #f1f5f9;
+  font-size: 14px;
+}
+
+input::placeholder{
+  color: #B0BEC5;
+}
+
+button{
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid #7cb26c;
+  background: #ecf9e5;
+  color: #1f4727;
+  font-weight: 700;
   font-size: 16px;
   cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
-p {
-  text-align: center;
+button:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(40, 80, 28, 0.18);
+  background: #d8f0c9;
 }
+
+.msg{
+  margin: 10px 0 0;
+  text-align:center;
+  color: #FFD700;
+  font-weight: 700;
+}
+
+.footer{
+  margin: 12px 0 0;
+  text-align:center;
+  font-size: 13px;
+  color: #B0BEC5;
+}
+
+.link{
+  color: #7cb26c;
+  font-weight: 800;
+}
+

@@ -1,23 +1,20 @@
 <div class="visa-card">
   <div class="card-content">
-    <div class="card-top">
-      <p class="label">Total Balance</p>
-      <span class="dots">•••</span>
+    <div class="card-header">
+      <h3 class="visa-text">VISA</h3>
+      <span class="dots-green">•••</span>
     </div>
 
-    <p class="amount">
-      ${{ totalBalance | number:'1.2-2' }}
-    </p>
+    <div class="card-number">•••• •••• •••• {{ lastDigits }}</div>
 
-    <div class="card-bottom">
-      <div class="card-digits">2844</div>
-      <div class="card-digits">7545</div>
-      <div class="card-digits">3807</div>
-      <div class="card-digits">1425</div>
-
-      <div class="mastercard">
-        <span class="circle red"></span>
-        <span class="circle yellow"></span>
+    <div class="card-footer">
+      <div class="holder-info">
+        <p class="holder-label">Balance</p>
+        <p class="holder-name">${{ totalBalance | number:'1.2-2' }}</p>
+      </div>
+      <div class="expiry-info">
+        <p class="expiry-label">Valid Till</p>
+        <p class="expiry-date">02/28</p>
       </div>
     </div>
   </div>

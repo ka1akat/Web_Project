@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { DashboardService } from '../../services/dashboard';
 import { AuthService } from '../../services/auth';
-import { Chart, ArcElement, Tooltip, Legend, PieController, BarElement, BarController, CategoryScale, LinearScale } from 'chart.js';
+import { Chart, ArcElement, Tooltip, Legend, PieController, DoughnutController, BarElement, BarController, CategoryScale, LinearScale } from 'chart.js';
 import { VisaCardComponent } from '../../components/visa-card/visa-card';
 
 Chart.register(
@@ -11,6 +11,7 @@ Chart.register(
   Tooltip,
   Legend,
   PieController,
+  DoughnutController,
   BarElement,
   BarController,
   CategoryScale,
@@ -59,7 +60,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.warningMessage = this.dashboardService.getWarnings();
   }
 
-
   private getUserStorageData(): { expenses: any[]; categories: any[] } {
     const username = localStorage.getItem('username') || 'guest';
     const expensesRaw =
@@ -86,7 +86,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       return;
     }
 
- 
     const totals: { [key: number]: number } = {};
     expenses.forEach((e: any) => {
       totals[e.categoryId] = (totals[e.categoryId] || 0) + Number(e.amount);
@@ -99,27 +98,47 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     const data = categories
       .filter((c: any) => totals[c.id] !== undefined)
       .map((c: any) => totals[c.id]);
+      const colors = [
+  'rgba(255, 193, 7, 0.8)',     // bright amber
+  'rgba(244, 67, 54, 0.75)',    // red
+  'rgba(76, 175, 80, 0.8)',     // bright green
+  'rgba(33, 150, 243, 0.8)',    // bright blue
+  'rgba(156, 39, 176, 0.75)',   // purple
+  'rgba(255, 87, 34, 0.8)',     // deep orange
+  'rgba(0, 188, 212, 0.8)'      // cyan
+];
 
-    const colors = [
-      '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
-      '#9966FF', '#FF9F40', '#C9CBCF', '#7BC8A4'
-    ];
+  
 
     this.pieChart?.destroy();
     this.pieChart = new Chart(this.categoryChartRef.nativeElement, {
-      type: 'pie',
+      type: 'doughnut',
       data: {
         labels,
         datasets: [{
           data,
-          backgroundColor: colors.slice(0, data.length)
+          backgroundColor: colors.slice(0, data.length),
+          borderColor: '#00450f',
+          borderWidth: 1
         }]
       },
       options: {
         responsive: true,
         plugins: {
-          legend: { position: 'bottom' }
-        }
+          legend: {
+            position: 'bottom',
+            labels: {
+              color: '   #e0f5e1',
+              font: { size: 12 }
+            }
+          },
+          tooltip: {
+            backgroundColor: '#1d3f1e',
+            titleColor: '#9df896',
+            bodyColor: '#e8f5e1'
+          }
+        },
+        cutout: '60%'
       }
     });
   }
@@ -148,30 +167,43 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         labels,
         datasets: [
           {
-            label: 'Сумма расходов',
+            label: '',
             data: totalsByDay,
-            backgroundColor: '#4f46e5'
+            backgroundColor: '#9df896', // красивый фиолетово-синий
+            borderColor: '#236838',
+            borderWidth: 1.5,
+            borderRadius: 5,
+            barThickness: 20 
+            ,
           }
         ]
       },
       options: {
         responsive: true,
         plugins: {
-          legend: { position: 'bottom' }
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: '#1d3f1e',
+            titleColor: '#9df896',
+            bodyColor: '#e8f5e1',
+            padding: 12,
+            titleFont: { size: 14 },
+            bodyFont: { size: 13 }
+          }
         },
         scales: {
           x: {
-            title: {
-              display: true,
-              text: 'День месяца'
-            }
+            ticks: { color: '#5a7d59', font: { size: 11 } },
+            grid: { color: '#c8e6c9', display: true },
+            title: { display: false }
           },
           y: {
             beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Сумма'
-            }
+            ticks: { color: '#5a7d59', font: { size: 11 } },
+            grid: { color: '#c8e6c9' },
+            title: { display: false }
           }
         }
       }

@@ -1,13 +1,98 @@
 .visa-card {
-  border-radius: 24px;
-  padding: 32px;
-  color: #f1f5f9;
-  width: min(100%, 620px);
-  min-height: 200px;
-  background: linear-gradient(to bottom right, #1e293b, #334155);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 230px;
+  border-radius: 20px;
+  padding: 24px;
+  color: #ffffff;
+
+  background: linear-gradient(135deg, #2c6f34, #184d24);
+  box-shadow: 0 15px 40px rgba(13, 47, 19, 0.34);
+
+  overflow: hidden;
+  display: flex;
 }
 
+/* внутренний контейнер */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.visa-text {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.dots-green {
+  color: #22c55e;
+  font-size: 18px;
+}
+
+/* номер карты */
+.card-number {
+  font-size: 18px;
+  letter-spacing: 3px;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+/* footer */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+/* баланс */
+.holder-label,
+.expiry-label {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.holder-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* дата */
+.expiry-date {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* glow эффект */
+.visa-card::after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(59,130,246,0.4), transparent);
+  top: -80px;
+  right: -80px;
+  filter: blur(40px);
+}
+
+/* hover эффект */
+.visa-card:hover {
+  transform: translateY(-5px);
+  transition: 0.3s ease;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
 .card-content {
   height: 100%;
   display: flex;

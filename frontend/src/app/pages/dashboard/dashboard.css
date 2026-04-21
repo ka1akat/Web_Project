@@ -1,5 +1,21 @@
 .dashboard-container{
   display:block;
+  min-height: 100vh;
+  padding: 32px;
+  background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+  font-family: 'Segoe UI', sans-serif;
+}
+.actions button:first-child {
+  background: #ecf9e5;
+  border-color: #7cb26c;
+  color: #1f4727;
+}
+
+/* LOGOUT — чуть теплее */
+.actions button:last-child {
+  background: #ecf9e5;
+  border-color: #7cb26c;
+  color: #1f4727;
 }
 
 .top-bar{
@@ -8,17 +24,23 @@
   align-items: flex-start;
   gap: 18px;
   margin-bottom: 18px;
+  padding: 18px 24px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.72);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
 .title h2{
   margin: 0;
   font-size: 30px;
   letter-spacing: .2px;
+  color: #1f4727;
 }
 
 .welcome{
   margin: 6px 0 0;
   font-size: 14px;
+  color: #4a5d4a;
 }
 
 .actions{
@@ -37,6 +59,115 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   margin: 8px 0 14px;
+}
+
+.card{
+  position: relative;
+  border-radius: 20px;
+  padding: 24px 18px;
+  min-height: 180px;
+  box-shadow: 0 12px 28px rgba(43, 65, 45, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  text-align:center;
+  border-left: 4px solid transparent;
+}
+
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(43, 65, 45, 0.12);
+}
+
+
+.card-1{
+  background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 60%, #81c784 100%);
+  border-left-color: #66bb6a;
+}
+
+.card-2{
+  background: linear-gradient(135deg, #d4edda 0%, #b8e0c7 60%, #9ccbb7 100%);
+  border-left-color: #7fb3a3;
+}
+
+.card-3{
+  background: linear-gradient(135deg, #dcedc8 0%, #c5e1a5 60%, #aed581 100%);
+  border-left-color: #9ccc65;
+}
+.card-1,
+.card-2,
+.card-3 {
+  border-radius: 20px;
+
+  /* мягкая тень как у visa-card */
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+
+  transition: all 0.3s ease;
+}
+
+/* hover эффект */
+.card-1:hover,
+.card-2:hover,
+.card-3:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 18px 35px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.card h3{
+  margin: 12px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f4727;
+  letter-spacing: 0.3px;
+}
+
+.card p{
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #1f3f24;
+  letter-spacing: -0.5px;
+}
+
+.card-icon{
+  font-size: 32px;
+  width: 50px;
+  height: 50px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.92);
+  color: #1f4727;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.09);
+}
+
+.material-symbols-outlined,
+.material-icons.icon {
+  font-size: 28px;
+  width: 38px;
+  height: 38px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.92);
+  color: #1f4727;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.09);
+}
+
+.nav-buttons .icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: rgba(146, 196, 82, 0.22);
+  color: #1f4727;
 }
 
 .stat{
@@ -60,25 +191,29 @@
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  font-weight: 800;
-  letter-spacing: .2px;
+  font-family: 'Material Icons';
+  font-size: 20px;
+  font-weight: normal;
+  letter-spacing: normal;
+  padding: 0;
 }
 
 .stat-icon-lime{
-  background: rgba(132,204,22,.14);
-  border: 1px solid rgba(132,204,22,.28);
-  color: var(--lime-2);
+  background: rgba(132,204,22,.18);
+  border: 1px solid rgba(132,204,22,.45);
+  color: #256026;
 }
 
 .stat-icon-warn{
-  background: rgba(251,191,36,.14);
-  border: 1px solid rgba(251,191,36,.28);
-  color: var(--yellow);
+  background: rgba(251,191,36,.18);
+  border: 1px solid rgba(251,191,36,.4);
+  color: #a67c00;
 }
 
 .stat-label{
   font-size: 13px;
   font-weight: 600;
+  color: #2d4f33;
 }
 
 .stat-value{
@@ -86,61 +221,167 @@
   font-size: 22px;
   font-weight: 800;
   letter-spacing: .2px;
+  color: #1f3f24;
 }
 
 .stat-value-warn{
-  color: #ffd28a;
+  color: #a67c00;
 }
 
 .nav-buttons{
   display:flex;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
   justify-content: center;
   margin: 12px 0 22px;
 }
 
-.panels{
-  display:grid;
+.nav-buttons a{
+  display:inline-flex;
+  align-items:center;
+  gap: 14px;
+  min-width: 200px;
+  padding: 18px 24px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 17px;
+  color: #1f4727;
+  border: 2px solid #7cb26c;
+  background: #ecf9e5;
+  box-shadow: 0 14px 34px rgba(40, 80, 28, 0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.nav-buttons a:nth-child(1),
+.nav-buttons a:nth-child(2),
+.nav-buttons a:nth-child(3){
+  background: #f4ffee;
+  border-color:#b0eb49;
+  color: #1f4727;
+}
+
+.nav-buttons a:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(40, 80, 28, 0.18);
+  background: #f7f7f7;
+  border-color: #5f974f;
+}
+
+.nav-buttons a:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(40, 80, 28, 0.18);
+}
+
+.material-icons.icon{
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.96);
+  color: #1f4727;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.85);
+}
+
+.panels {
+  display: grid;
   grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
-  gap: 16px;
-  align-items:start;
+  gap: 20px;
+  align-items: start;
 }
 
-.panel h3{
+/* 🔥 общий стиль панели = как visa-card */
+.panel.card {
+  border-radius: 20px;
+  padding: 20px;
+  color: #f1f5f9;
+  width: 100%;
+  min-height: 200px;
+
+  background: linear-gradient(135deg, #2b5e2e 0%, #184a22 100%);
+  box-shadow: 
+    0 15px 40px rgba(16, 52, 24, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ glow эффект как у карты */
+.panel.card::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(129,199,132,0.3), transparent);
+  top: -60px;
+  right: -60px;
+  filter: blur(40px);
+}
+
+/* hover */
+.panel.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+/* заголовок */
+.panel h3 {
   margin: 0;
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: .2px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #ffffff;
 }
 
-.panel-title{
-  display:flex;
-  align-items: baseline;
+/* header панели */
+.panel-title {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  gap: 12px;
   margin-bottom: 14px;
 }
 
-.chart-wrap{
-  width:100%;
-  height: 240px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.panel-title span {
+  color: #94a3b8;
+  font-size: 13px;
 }
 
-.chart-wrap-wide{
+/* график */
+.chart-wrap {
+  width: 100%;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* широкий график */
+.chart-wrap-wide {
   height: 260px;
 }
 
-canvas{
+/* canvas */
+canvas {
   max-width: 100%;
   max-height: 100%;
 }
 
-@media (max-width: 980px){
-  .cards{ grid-template-columns: 1fr; }
-  .panels{ grid-template-columns: 1fr; }
-  .top-bar{ align-items: flex-start; }
+/* адаптив */
+@media (max-width: 980px) {
+  .panels {
+    grid-template-columns: 1fr;
+  }
 }
