@@ -1,25 +1,14 @@
-.dashboard-container{
-  display:block;
+.dashboard-container {
+  display: block;
   min-height: 100vh;
   padding: 32px;
   background: linear-gradient(135deg, #eef2f3, #dfe9f3);
   font-family: 'Segoe UI', sans-serif;
 }
-.actions button:first-child {
-  background: #ecf9e5;
-  border-color: #7cb26c;
-  color: #1f4727;
-}
 
-/* LOGOUT — чуть теплее */
-.actions button:last-child {
-  background: #ecf9e5;
-  border-color: #7cb26c;
-  color: #1f4727;
-}
-
-.top-bar{
-  display:flex;
+/* TOP BAR */
+.top-bar {
+  display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 18px;
@@ -30,215 +19,157 @@
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-.title h2{
+.title h2 {
   margin: 0;
   font-size: 30px;
   letter-spacing: .2px;
   color: #1f4727;
 }
 
-.welcome{
+.welcome {
   margin: 6px 0 0;
   font-size: 14px;
   color: #4a5d4a;
 }
 
-.actions{
-  display:flex;
+.actions {
+  display: flex;
   gap: 10px;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
-.visa-wrap{
-  margin: 18px 0 18px;
+.actions button {
+  background: #ecf9e5;
+  border-color: #7cb26c;
+  color: #1f4727;
 }
 
-.cards{
-  display:grid;
+/* VISA + QUOTE GRID */
+.visa-quote-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+
+.quote-card {
+  border-radius: 20px;
+  padding: 28px 24px;
+  background: #f4ffee;
+  border: 0.5px solid #b0eb49;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.quote-icon {
+  font-size: 32px;
+}
+
+.quote-text {
+  margin: 0;
+  font-size: 16px;
+  font-style: italic;
+  color: #3a6b3a;
+  line-height: 1.7;
+}
+
+/* STAT CARDS */
+.cards {
+  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
-  margin: 8px 0 14px;
+  margin: 0 0 18px;
 }
 
-.card{
+.card {
   position: relative;
   border-radius: 20px;
   padding: 24px 18px;
   min-height: 180px;
-  box-shadow: 0 12px 28px rgba(43, 65, 45, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  display:flex;
-  flex-direction: column;
-  align-items:center;
-  text-align:center;
-  border-left: 4px solid transparent;
-}
-
-.card:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(43, 65, 45, 0.12);
-}
-
-
-.card-1{
-  background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 60%, #81c784 100%);
-  border-left-color: #66bb6a;
-}
-
-.card-2{
-  background: linear-gradient(135deg, #d4edda 0%, #b8e0c7 60%, #9ccbb7 100%);
-  border-left-color: #7fb3a3;
-}
-
-.card-3{
-  background: linear-gradient(135deg, #dcedc8 0%, #c5e1a5 60%, #aed581 100%);
-  border-left-color: #9ccc65;
-}
-.card-1,
-.card-2,
-.card-3 {
-  border-radius: 20px;
-
-  /* мягкая тень как у visa-card */
-  box-shadow: 
-    0 10px 25px rgba(0, 0, 0, 0.15),
-    inset 0 1px 1px rgba(255, 255, 255, 0.3);
-
   transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-/* hover эффект */
-.card-1:hover,
-.card-2:hover,
-.card-3:hover {
+.card-1 {
+  background: #e8f5e9;
+  border: 0.5px solid #a5d6a7;
+  border-left: 3px solid #4a9e5c;
+}
+
+.card-2 {
+  background: #e8f5e9;
+  border: 0.5px solid #a5d6a7;
+  border-left: 3px solid #4a9e5c;
+}
+
+.card-3 {
+  background: #fff8e1;
+  border: 0.5px solid #ffe082;
+  border-left: 3px solid #e6a817;
+}
+.card-3 p {
+  font-size: 14px !important;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #7a4f00;
+}
+
+.card-1:hover, .card-2:hover, .card-3:hover {
   transform: translateY(-5px);
-  box-shadow: 
-    0 18px 35px rgba(0, 0, 0, 0.25),
-    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 18px 35px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.4);
 }
 
-.card h3{
+.card h3 {
   margin: 12px 0 8px;
   font-size: 14px;
   font-weight: 600;
-  color: #1f4727;
+  color: #2e7d32;
   letter-spacing: 0.3px;
 }
 
-.card p{
+.card p {
   margin: 0;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 800;
-  color: #1f3f24;
+  color: #1a4a1e;
   letter-spacing: -0.5px;
 }
 
-.card-icon{
+.card-icon {
   font-size: 32px;
   width: 50px;
   height: 50px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 12px;
   background: rgba(255,255,255,0.92);
   color: #1f4727;
   box-shadow: 0 6px 16px rgba(0,0,0,0.09);
 }
 
-.material-symbols-outlined,
-.material-icons.icon {
-  font-size: 28px;
-  width: 38px;
-  height: 38px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.92);
-  color: #1f4727;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.09);
-}
-
-.nav-buttons .icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
-  background: rgba(146, 196, 82, 0.22);
-  color: #1f4727;
-}
-
-.stat{
-  border-radius: var(--r-lg);
-}
-
-.stat-inner{
-  padding: 18px 18px;
-}
-
-.stat-top{
-  display:flex;
-  align-items:center;
-  gap: 12px;
-}
-
-.stat-icon{
-  width: 34px;
-  height: 34px;
-  border-radius: 12px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-family: 'Material Icons';
-  font-size: 20px;
-  font-weight: normal;
-  letter-spacing: normal;
-  padding: 0;
-}
-
-.stat-icon-lime{
-  background: rgba(132,204,22,.18);
-  border: 1px solid rgba(132,204,22,.45);
-  color: #256026;
-}
-
-.stat-icon-warn{
-  background: rgba(251,191,36,.18);
-  border: 1px solid rgba(251,191,36,.4);
-  color: #a67c00;
-}
-
-.stat-label{
-  font-size: 13px;
-  font-weight: 600;
-  color: #2d4f33;
-}
-
-.stat-value{
-  margin: 12px 0 0;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: .2px;
-  color: #1f3f24;
-}
-
-.stat-value-warn{
-  color: #a67c00;
-}
-
-.nav-buttons{
-  display:flex;
+/* NAV BUTTONS */
+.nav-buttons {
+  display: flex;
   gap: 14px;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 12px 0 22px;
+  margin: 0 0 22px;
 }
 
-.nav-buttons a{
-  display:inline-flex;
-  align-items:center;
+.nav-buttons a {
+  display: inline-flex;
+  align-items: center;
   gap: 14px;
   min-width: 200px;
   padding: 18px 24px;
@@ -247,106 +178,72 @@
   font-weight: 700;
   font-size: 17px;
   color: #1f4727;
-  border: 2px solid #7cb26c;
-  background: #ecf9e5;
-  box-shadow: 0 14px 34px rgba(40, 80, 28, 0.14);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-}
-
-.nav-buttons a:nth-child(1),
-.nav-buttons a:nth-child(2),
-.nav-buttons a:nth-child(3){
+  border: 2px solid #b0eb49;
   background: #f4ffee;
-  border-color:#b0eb49;
-  color: #1f4727;
+  box-shadow: 0 14px 34px rgba(40,80,28,0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
-.nav-buttons a:hover{
+.nav-buttons a:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 36px rgba(40, 80, 28, 0.18);
+  box-shadow: 0 16px 36px rgba(40,80,28,0.18);
   background: #f7f7f7;
   border-color: #5f974f;
 }
 
-.nav-buttons a:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 16px 36px rgba(40, 80, 28, 0.18);
-}
-
-.material-icons.icon{
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
+.material-icons.icon {
   font-size: 28px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
   width: 44px;
   height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 12px;
   background: rgba(255,255,255,0.96);
   color: #1f4727;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.85);
 }
 
+/* PANELS */
 .panels {
   display: grid;
-  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
-  align-items: start;
+  align-items: stretch;
 }
 
-/* 🔥 общий стиль панели = как visa-card */
 .panel.card {
-  border-radius: 20px;
+  border-radius: 14px;
   padding: 20px;
-  color: #f1f5f9;
   width: 100%;
-  min-height: 200px;
-
-  background: linear-gradient(135deg, #2b5e2e 0%, #184a22 100%);
-  box-shadow: 
-    0 15px 40px rgba(16, 52, 24, 0.35),
-    inset 0 1px 1px rgba(255, 255, 255, 0.08);
-
+  min-height: unset;
+  height: 100%;
+  background: #fff;
+  border: 0.5px solid #e0e0e0;
+  border-top: 3px solid #4a9e5c;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
-/* ✨ glow эффект как у карты */
 .panel.card::after {
-  content: "";
-  position: absolute;
-  width: 220px;
-  height: 220px;
-  background: radial-gradient(circle, rgba(129,199,132,0.3), transparent);
-  top: -60px;
-  right: -60px;
-  filter: blur(40px);
+  display: none;
 }
 
-/* hover */
 .panel.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.45),
-    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.1);
 }
 
-/* заголовок */
 .panel h3 {
   margin: 0;
   font-size: 18px;
   font-weight: 700;
-  letter-spacing: 0.3px;
-  color: #ffffff;
+  color: #1a4a1e;
 }
 
-/* header панели */
 .panel-title {
   display: flex;
   align-items: center;
@@ -355,11 +252,10 @@
 }
 
 .panel-title span {
-  color: #94a3b8;
+  color: #888;
   font-size: 13px;
 }
 
-/* график */
 .chart-wrap {
   width: 100%;
   height: 240px;
@@ -368,20 +264,24 @@
   justify-content: center;
 }
 
-/* широкий график */
 .chart-wrap-wide {
   height: 260px;
 }
 
-/* canvas */
 canvas {
   max-width: 100%;
   max-height: 100%;
 }
 
-/* адаптив */
+/* RESPONSIVE */
 @media (max-width: 980px) {
   .panels {
+    grid-template-columns: 1fr;
+  }
+  .visa-quote-grid {
+    grid-template-columns: 1fr;
+  }
+  .cards {
     grid-template-columns: 1fr;
   }
 }

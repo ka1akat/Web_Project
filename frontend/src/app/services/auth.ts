@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { tap, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,15 @@ export class AuthService {
     }).pipe(
       tap((response: any) => {
         const token = response.token || response.key || response.auth_token;
-        console.log('FULL RESPONSE:', response);
-        console.log('TOKEN SAVED:', token);
-        localStorage.setItem('token', token);
-        localStorage.setItem('username', username);
+        if (token) {
+          localStorage.setItem('token', token);
+          localStorage.setItem('username', username);
+        }
+      }),
+      catchError((error) => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        return throwError(() => error);
       })
     );
   }
@@ -30,8 +36,15 @@ export class AuthService {
       password
     }).pipe(
       tap((response) => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('username', username);
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('username', username);
+        }
+      }),
+      catchError((error) => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        return throwError(() => error);
       })
     );
   }
@@ -40,8 +53,13 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
+
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
   }
 }
+

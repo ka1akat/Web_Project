@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { LandingComponent } from './pages/landing/landing';
 import { LoginComponent } from './pages/login/login';
 import { RegisterComponent } from './pages/register/register';
 import { CategoriesComponent } from './pages/categories/categories';
@@ -9,7 +10,7 @@ import { Profile } from './pages/profile/profile';
 import { ChangePasswordComponent } from './pages/change-password/change-password';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
@@ -19,3 +20,4 @@ export const routes: Routes = [
   { path: 'profile', component: Profile },
   { path: 'change-password', component: ChangePasswordComponent }
 ];
+

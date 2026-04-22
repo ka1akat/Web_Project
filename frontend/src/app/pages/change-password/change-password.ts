@@ -47,7 +47,8 @@ export class ChangePasswordComponent {
     }, { headers }).subscribe({
       next: () => {
         alert('Password updated successfully');
-        localStorage.clear();
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
         this.router.navigate(['/login']);
       },
       error: (err) => {

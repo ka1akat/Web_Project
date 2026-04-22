@@ -1,32 +1,61 @@
 <div class="page login-page">
   <div class="container">
+
+    <a class="back-btn" routerLink="/">← Back to Home</a>
+
     <div class="auth-wrap">
       <div class="brand">
         <div class="brand-icon" aria-hidden="true">↗</div>
-        <h2>Welcome Back</h2>
+        <h2>Welcome</h2>
         <p class="muted">Sign in to manage your finances</p>
       </div>
 
       <div class="card auth-card">
         <div class="card-inner">
+
           <div class="field-row">
             <label class="lbl muted-2">Username</label>
-            <input class="field" [(ngModel)]="username" placeholder="your@email.com" />
+            <input
+              class="field"
+              [(ngModel)]="username"
+              placeholder="Enter your username"
+              [disabled]="isLoading"
+            />
           </div>
 
           <div class="field-row">
             <label class="lbl muted-2">Password</label>
-            <input class="field" [(ngModel)]="password" type="password" placeholder="••••••••" />
+            <div class="password-wrap">
+              <input
+                class="field"
+                [(ngModel)]="password"
+                [type]="showPassword ? 'text' : 'password'"
+                placeholder="••••••••"
+                [disabled]="isLoading"
+              />
+              <button class="eye-btn" type="button" (click)="showPassword = !showPassword">
+                {{ showPassword ? 'Hide' : 'Show' }}
+              </button>
+            </div>
           </div>
 
-          <button class="btn btn-primary" (click)="login()">Sign In</button>
+          <button class="btn btn-primary" (click)="login()" [disabled]="isLoading">
+            @if (isLoading) {
+              <span>Loading...</span>
+            } @else {
+              <span>Sign In</span>
+            }
+          </button>
 
-          <p class="msg" *ngIf="message">{{ message }}</p>
+          @if (isError && message) {
+            <p class="msg error-msg">⚠ {{ message }}</p>
+          }
 
           <p class="footer muted">
-            Don’t have an account?
+            Don't have an account?
             <a class="link" routerLink="/register">Sign up</a>
           </p>
+
         </div>
       </div>
     </div>

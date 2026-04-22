@@ -94,21 +94,26 @@ button, input, select, textarea{
   color: #ffd4d4;
 }
 
-.field{
-  width:100%;
+.field {
+  width: 100%;
   padding: 12px 14px;
   border-radius: 14px;
   border: 1px solid var(--stroke);
-  background: rgba(10,18,32,.55);
-  color: var(--text);
+  background: #ffffff;
+  color: #1a3a1a;
+  -webkit-text-fill-color: #1a3a1a;
   outline: none;
-  transition: border-color .12s ease, box-shadow .12s ease, background .12s ease;
+  transition: border-color .12s ease, box-shadow .12s ease;
 }
-.field::placeholder{ color: rgba(234,240,255,.46); }
-.field:focus{
+
+.field::placeholder {
+  color: #7b956f;
+}
+
+.field:focus {
   border-color: rgba(132,204,22,.45);
   box-shadow: 0 0 0 4px rgba(132,204,22,.12);
-  background: rgba(10,18,32,.7);
+  background: #ffffff;
 }
 
 .muted{ color: var(--muted); }

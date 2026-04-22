@@ -9,7 +9,6 @@
     </div>
 
     <div class="grid">
-      <!-- Форма добавления -->
       <div class="card">
         <div class="card-inner">
           <div class="card-head">
@@ -27,9 +26,9 @@
               <label class="lbl muted-2">Category</label>
               <select class="field" [(ngModel)]="categoryId">
                 <option [ngValue]="null" disabled>Select category</option>
-                <option *ngFor="let cat of categories" [ngValue]="cat.id">
-                  {{ cat.name }}
-                </option>
+                @for (cat of categories; track cat.id) {
+                  <option [ngValue]="cat.id">{{ cat.name }}</option>
+                }
               </select>
             </div>
 
@@ -53,7 +52,6 @@
         </div>
       </div>
 
-      <!-- Список расходов -->
       <div class="card">
         <div class="card-inner">
           <div class="card-head">
@@ -62,25 +60,32 @@
           </div>
 
           <div class="list-section">
-            <div class="empty muted" *ngIf="expenses.length === 0">Нет расходов</div>
+            @if (expenses.length === 0) {
+              <div class="empty muted">No expenses yet</div>
+            }
 
-            <div class="expense-item" *ngFor="let expense of expenses">
-              <div class="expense-info">
-                <div class="row">
-                  <strong class="name">{{ expense.title }}</strong>
-                  <span class="amt">{{ expense.amount }} ₸</span>
+            @for (expense of expenses; track expense.id) {
+              <div class="expense-item">
+                <div class="expense-info">
+                  <div class="row">
+                    <strong class="name">{{ expense.title }}</strong>
+                    <span class="amt">{{ expense.amount }} ₸</span>
+                  </div>
+                  <div class="meta">
+                    <span class="pill">{{ expense.date }}</span>
+                    <span class="pill">{{ getCategoryName(expense.categoryId) }}</span>
+                  </div>
+                  @if (expense.note) {
+                    <p class="note-text muted">{{ expense.note }}</p>
+                  }
                 </div>
-                <div class="meta">
-                  <span class="pill">{{ expense.date }}</span>
-                  <span class="pill">{{ getCategoryName(expense.categoryId) }}</span>
-                </div>
-                <p class="note-text muted" *ngIf="expense.note">{{ expense.note }}</p>
+                <button class="btn btn-danger" (click)="deleteExpense(expense.id)">Delete</button>
               </div>
-              <button class="btn btn-danger" (click)="deleteExpense(expense.id)">Удалить</button>
-            </div>
+            }
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+

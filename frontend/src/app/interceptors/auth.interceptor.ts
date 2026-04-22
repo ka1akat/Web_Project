@@ -1,8 +1,15 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  if (req.headers.has('Authorization')) {
-    return next(req);
+  // Login және register үшін token қоспа
+  if (req.url.includes('/login/') || req.url.includes('/register/')) {
+    return next(req).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
   }
 
   const token = localStorage.getItem('token');
@@ -17,5 +24,13 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     }
   });
 
-  return next(clonedReq);
+  return next(clonedReq).pipe(
+    catchError((error: HttpErrorResponse) => {
+      if (error.status === 401) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+      }
+      return throwError(() => error);
+    })
+  );
 };

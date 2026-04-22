@@ -1,5 +1,5 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Expense, Category, Budget
 from .serializers import ExpenseSerializer, CategorySerializer, BudgetSerializer
 
@@ -12,8 +12,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import UserSerializer
 
-
 from rest_framework.decorators import permission_classes
+
 
 class CategoryListCreateView(ListCreateAPIView):
     serializer_class = CategorySerializer
@@ -44,6 +44,7 @@ class ExpenseDetailView(RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Expense.objects.filter(user=self.request.user)
 
+
 class BudgetListCreateView(ListCreateAPIView):
     serializer_class = BudgetSerializer
     permission_classes = [IsAuthenticated]
@@ -64,34 +65,47 @@ class BudgetDetailView(RetrieveUpdateDestroyAPIView):
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def register(request):
-    username = request.data['username']
-    password = request.data['password']
+    username = request.data.get('username')
+    password = request.data.get('password')
+
+    if not username or not password:
+        return Response({'error': 'Username and password required'}, status=400)
+
+    if User.objects.filter(username=username).exists():
+        return Response({'error': 'Username already exists'}, status=400)
 
     user = User.objects.create_user(username=username, password=password)
     token, _ = Token.objects.get_or_create(user=user)
 
-    return Response({'token': token.key})
+    return Response({'token': token.key}, status=201)
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def login(request):
-    user = authenticate(
-        username=request.data['username'],
-        password=request.data['password']
-    )
+    username = request.data.get('username')
+    password = request.data.get('password')
+
+    if not username or not password:
+        return Response({'error': 'Username and password required'}, status=400)
+
+    user = authenticate(username=username, password=password)
 
     if user:
         token, _ = Token.objects.get_or_create(user=user)
         return Response({'token': token.key})
 
-    return Response({'error': 'Invalid credentials'})
+    return Response({'error': 'Invalid credentials'}, status=401)
+
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def logout(request):
     request.user.auth_token.delete()
     return Response({'message': 'Logged out'})
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -106,6 +120,7 @@ def statistics(request):
         'total_spent': total,
         'count': expenses.count()
     })
+
 
 from .models import Budget
 
@@ -131,7 +146,8 @@ def warnings(request):
         return Response({'warning': 'You used 80% of your budget'})
     else:
         return Response({'message': 'All good'})
-    
+
+
 class UserView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -148,7 +164,7 @@ class UserView(APIView):
             return Response(serializer.data)
 
         return Response(serializer.errors)
-    
+
 
 class ChangePasswordView(APIView):
     permission_classes = [IsAuthenticated]

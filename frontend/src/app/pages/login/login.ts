@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
@@ -14,21 +14,37 @@ import { AuthService } from '../../services/auth';
 export class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
 
   username = '';
   password = '';
   message = '';
+  isLoading = false;
+  isError = false;
+  showPassword = false;
 
   login(): void {
-    this.message = 'Logging in...';
+    if (!this.username || !this.password) {
+      this.message = 'Please fill in all fields';
+      this.isError = true;
+      return;
+    }
+
+    this.isLoading = true;
+    this.isError = false;
+    this.message = '';
 
     this.authService.login(this.username, this.password).subscribe({
       next: () => {
-        this.message = 'Успешный вход ';
+        this.isLoading = false;
+        this.cdr.detectChanges();
         this.router.navigate(['/dashboard']);
       },
-      error: () => {
-        this.message = 'Login or password is not correct';
+      error: (err) => {
+        this.isLoading = false;
+        this.isError = true;
+        this.message = 'Incorrect username or password';
+        this.cdr.detectChanges();
       }
     });
   }

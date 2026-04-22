@@ -24,12 +24,14 @@ export class RegisterComponent {
 
     this.authService.register(this.username, this.password).subscribe({
       next: () => {
-        this.message = 'Успешная регистрация ';
+        this.message = 'Registrated successfully. ';
         this.router.navigate(['/dashboard']);
       },
-      error: () => {
-        this.message = 'Ошибка регистрации ';
+      error: (err) => {
+        console.log(err);
+        this.message = 'Registration failed ';
       }
     });
   }
 }
+

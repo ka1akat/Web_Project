@@ -25,11 +25,11 @@ export class DashboardService {
     const currentMonth = new Date().toISOString().slice(0, 7);
     const currentBudget = budgets.find((b: any) => b.month === currentMonth);
 
-    if (!currentBudget) return 'Бюджет не установлен';
+    if (!currentBudget) return 'No budget set';
 
     const limit = currentBudget.amount;
-    if (total_spent >= limit) return `⚠️ Бюджет превышен! Потрачено: ${total_spent} / ${limit}`;
-    if (total_spent >= limit * 0.8) return `⚠️ Использовано 80% бюджета: ${total_spent} / ${limit}`;
-    return `✅ В норме: ${total_spent} / ${limit}`;
+    if (total_spent >= limit) return ` Budget exceeded! Spent: ${total_spent} / ${limit}`;
+    if (total_spent >= limit * 0.8) return ` 80% of budget used: ${total_spent} / ${limit}`;
+    return ` On track: ${total_spent} / ${limit}`;
   }
 }
